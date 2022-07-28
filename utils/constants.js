@@ -6,6 +6,7 @@ module.exports = {
         admin : "ADMIN"
     },
 
+    
     userStatus : {
         pending : "PENDING",
         approved : "APPROVED",

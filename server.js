@@ -53,6 +53,7 @@ async function init(){
 
 
 // Require all routes
+require('./routes/user.route')(app);
 require('./routes/auth.route')(app);
 
 

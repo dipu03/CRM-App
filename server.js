@@ -8,7 +8,8 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 
 const serverConfig = require('./configs/server.config')
-const User = require('./models/user.model')
+const User = require('./models/user.model');
+const Ticket = require('./models/ticket.model');
 const constants = require('./utils/constants')
 
 // connectiong with mongoDB
@@ -26,6 +27,7 @@ async function init(){
     try{
 
         await User.collection.drop();
+        await Ticket.collection.drop();
     
         let  user = await User.findOne({userType : constants.userType.admin});
         if(user){
@@ -53,6 +55,7 @@ async function init(){
 
 
 // Require all routes
+require('./routes/ticket.route')(app)
 require('./routes/user.route')(app);
 require('./routes/auth.route')(app);
 

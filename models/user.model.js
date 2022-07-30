@@ -46,6 +46,14 @@ const userSchema = new mongoose.Schema({
         required : true,
         default : constants.userStatus.approved,
         enum : [constants.userStatus.approved, constants.userStatus.pending, constants.userStatus.rejected]
+    },
+    ticketsCreated : {
+        type : [mongoose.SchemaType.ObjectId],
+        ref : "Ticket"
+    },
+    ticketsAssigned : {
+        type : [mongoose.SchemaType.ObjectId],
+        ref : "Ticket"
     }
 })
 

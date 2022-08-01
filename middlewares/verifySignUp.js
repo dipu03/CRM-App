@@ -19,7 +19,7 @@ const validateSignUpRequestBody = async (req, res, next) => {
 
         if(req.body.userType == constants.userType.admin){
             return res.status(400).send({
-                message : "!! ADMIN !! Registration is not available !!!"
+                message : "Failed !! ADMIN !! Registration is not available !!!"
             })
         }
 

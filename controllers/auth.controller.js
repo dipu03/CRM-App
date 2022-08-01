@@ -57,14 +57,14 @@ exports.signin = async (req, res) => {
 
         if(user.userStatus == constants.userStatus.pending){
             return res.status(400).send({
-                message : "User is still pending !! Unable to login"
+                message : "Failed 11 User is still pending !! Unable to login !!!"
             })
         }
 
         const isValidPassword = bcrypt.compareSync(req.body.password, user.password);
         if(!isValidPassword){
             return res.status(400).send({
-                message : "Wrong Password Provided"
+                message : "Failed !! Wrong Password Provided !!!"
             })
         }
 

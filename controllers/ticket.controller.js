@@ -80,7 +80,7 @@ exports.findAllTickets = async (req, res) => {
 
                 if(ticketsCreatedByUser.length == 0){
                     return res.status(200).send({
-                        message : "No Ticket are created Yet !!!"
+                        message : "Failed !! No Ticket are created Yet !!!"
                     })
                 }
                 queryObj._id = {$in : ticketsCreatedByUser};
@@ -97,13 +97,13 @@ exports.findAllTickets = async (req, res) => {
 
                 if(ticketsCreatedByUser.length == 0){
                     return res.status(200).send({
-                        message : "No Tickets are created Yet !!!"
+                        message : "Failed !! No Tickets are created Yet !!!"
                     })
                 }
 
                 if(ticketsAssignedToEngineer.length == 0){
                     return res.status(200).send({
-                        message : "No Tickets are assigned Yet !!!"
+                        message : "Failed !! No Tickets are assigned Yet !!!"
                     })
                 }
 
@@ -121,7 +121,7 @@ exports.findAllTickets = async (req, res) => {
                 
                 if(tickets.length == 0){
                     return res.status(200).send({
-                        message : "No Ticket Created Yet"
+                        message : "Failed !! No Ticket Created Yet !!!"
                     })
                 }
                 res.status(200).send(tickets)

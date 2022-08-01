@@ -21,7 +21,7 @@ const verifyToken = (req, res, next) => {
 
         if(err){
             return res.status(401).send({
-                message : "UnAuthorized"
+                message : "Failed !! UnAuthorized !!!"
             })
         }
         req.userId = decoded.id  // I am taking the user Id from token and settign it in request object
@@ -63,7 +63,7 @@ const isValidUserIdInParams = async (req, res, next) => {
 
         if(user.length == 0){
             return res.status(400).send({
-                message : "UserId passed doesn't exists"
+                message : "Failed !! UserId passed doesn't exists !!!"
             })
         }
 
@@ -84,7 +84,7 @@ const isAdminOrOwner = async (req, res, next) => {
             next()
         }else{
             return res.status(403).send({
-                message : "Only Admin and Owner can make this call"
+                message : "Failed !! Only Admin and Owner can make this call !!!"
             })
         }
 
@@ -105,7 +105,7 @@ const validateUserTypeAndUserStatusUpdateRequest = async (req, res, next) => {
         if((req.body.userType || req.body.userStatus) && user.userType != constants.userType.admin){
             
             return res.status(403).send({
-                message : "Only Admin can Update the data"
+                message : "Failed !! Only Admin can Update the data !!!"
             })
         }
         next()

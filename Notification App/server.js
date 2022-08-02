@@ -26,9 +26,11 @@ async function init(){
         await Notification.collection.drop();
 
         const notificationObj = {
-            subject : "Test Email",
-            recepientEmail : "bhoumik.dipu@gmail.com",
-            content : "Hello !! i am a atest email created bt manually"
+            subject : "Test Email by Admin",
+            recepientEmails : "bhoumik.dipu@gmail.com,bhoumik.dipu03121997@gmail.com",
+            requester : "Dipankar Bhoumik",
+            content : "Hello !! this is a test email created by admin manually",
+            notificationStatus : "UN_SENT"
         }
 
         const notification = await Notification.create(notificationObj);
@@ -39,8 +41,8 @@ async function init(){
     }
 };
 
-console.log(serverConfig)
-
+require('./schedulars/emailSchedular')
+require('./routes/notification.route')(app)
 app.listen(serverConfig.PORT, () => {
     console.log("Server is Runing at Port : " + serverConfig.PORT)
 })

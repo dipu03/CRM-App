@@ -17,6 +17,23 @@ module.exports = {
         open : "OPEN",
         close : "CLOSE",
         blocked : "BLOCKED"
+    },
+
+    isValidEmail : (email) => {
+        const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(String(email).toLowerCase());
+    },
+
+    getEngineer : (engineers) => {
+        let tempEng;
+        let len = Number.MAX_SAFE_INTEGER;
+        for(let engineer of engineers){
+            if(engineer.ticketsAssigned.length < len){
+                tempEng = engineer;
+                len = engineer.ticketsAssigned.length
+            }
+        }
+        return tempEng
     }
 
 }

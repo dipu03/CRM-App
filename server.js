@@ -44,6 +44,14 @@ async function init(){
             userType : constants.userType.admin,
             userStatus : constants.userStatus.approved
         })
+
+        await Ticket.create({
+            title: "this is a manually created ticket by admin",
+            ticketPriority: 4,
+            description : "admin has an issue",
+            reporter: "dipu",
+            ticketStatus : "OPEN"
+        })
     
         console.log(user);
 

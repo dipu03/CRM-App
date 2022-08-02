@@ -20,7 +20,7 @@ exports.createTicket = async (req, res) => {
         })
 
         if(engineers.length != 0){
-            engineer = getEngineer(engineers)
+            engineer = constants.getEngineer(engineers)
             ticketObj.assignee = engineer.userId
         }
 
@@ -49,19 +49,6 @@ exports.createTicket = async (req, res) => {
         })
     }
 };
-
-// to filter the less load engineer
-function getEngineer(engineers){
-    let tempEng;
-    let len = Number.MAX_SAFE_INTEGER;
-    for(let engineer of engineers){
-        if(engineer.ticketsAssigned.length < len){
-            tempEng = engineer;
-            len = engineer.ticketsAssigned.length
-        }
-    }
-    return tempEng
-}
 
 
 exports.findAllTickets = async (req, res) => {

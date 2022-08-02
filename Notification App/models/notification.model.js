@@ -6,7 +6,7 @@ const notificationSchema = new mongoose.Schema({
         type : String,
         required : true
     },
-    recepientEmail : {
+    recepientEmails : {
         type : String,
         required : true
     },
@@ -30,7 +30,7 @@ const notificationSchema = new mongoose.Schema({
             return Date.now()
         }
     },
-    status : {
+    notificationStatus : {
         type : String,
         default : constants.notificationStatus.un_sent,
         enum : [constants.notificationStatus.sent, constants.notificationStatus.un_sent]

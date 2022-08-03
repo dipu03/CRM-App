@@ -32,10 +32,6 @@ cron.schedule("*/10 * * * * * ", async () => {
         }
 
     }catch(err){
-        console.log("Error in email schedular ");
-        res.status(500).send({
-            message : "Internal Server Error !!!"
-        })
+        console.log("Error in email schedular")
     }
-
 })

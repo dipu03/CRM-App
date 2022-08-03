@@ -34,6 +34,11 @@ module.exports = {
             }
         }
         return tempEng
+    },
+
+    mailCriteria : {
+        OWNER_NAME : "CRM-APP",
+        ADMIN_MAIL_ID : "bhoumik.dipu@gmail.com"
     }
 
 }

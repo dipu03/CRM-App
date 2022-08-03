@@ -1,6 +1,8 @@
 const User = require('../models/user.model');
 const Ticket = require('../models/ticket.model');
 const constants = require('../utils/constants');
+const sendNtificationReq = require('../utils/notificationClient');
+const createContent = require('../utils/emailContent');
 
 exports.createTicket = async (req, res) => {
     try{
@@ -39,6 +41,14 @@ exports.createTicket = async (req, res) => {
                 engineer.ticketsAssigned.push(ticket._id);
                 await engineer.save()
             }
+
+            const reporter = await User.findOne({userId : ticket.reporter});
+            const assignee = await User.findOne({userId : ticket.assignee});
+            const emailContent = createContent.notificationContent(ticket);
+            
+            // send email 
+            sendNtificationReq(`Ticket Created !!! Id : ${ticket._id}`,`${reporter.email},${assignee.email},${constants.mailCriteria.ADMIN_MAIL_ID}`,emailContent ,`${constants.mailCriteria.OWNER_NAME}`)
+
             res.status(201).send(ticket)
         }
 
@@ -125,6 +135,12 @@ exports.findAllTickets = async (req, res) => {
 exports.updateTicket = async (req, res) => {
     try{
         const ticket = await Ticket.findOne({_id : req.params.id});
+
+        if(req.body.reporter && req.body.reporter != ticket.reporter){
+            return res.status(400).send({
+                message : "Failed !! You can not change Ticket Owner id !!!"
+            })
+        }
 
         ticket.title = req.body.title != undefined ? req.body.title : ticket.title;
         ticket.description = req.body.description != undefined ? req.body.description : ticket.description;

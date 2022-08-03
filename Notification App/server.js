@@ -23,18 +23,18 @@ db.on("open", () => {
 async function init(){
     try{
 
-        await Notification.collection.drop();
+        // await Notification.collection.drop();
 
-        const notificationObj = {
-            subject : "Test Email by Admin",
-            recepientEmails : "bhoumik.dipu@gmail.com,bhoumik.dipu03121997@gmail.com",
-            requester : "Dipankar Bhoumik",
-            content : "Hello !! this is a test email created by admin manually",
-            notificationStatus : "UN_SENT"
-        }
+        // const notificationObj = {
+        //     subject : "Test Email by Admin",
+        //     recepientEmails : "bhoumik.dipu@gmail.com,bhoumik.dipu03121997@gmail.com",
+        //     requester : "Dipankar Bhoumik",
+        //     content : "Hello !! this is a test email created by admin manually",
+        //     notificationStatus : "UN_SENT"
+        // }
 
-        const notification = await Notification.create(notificationObj);
-        console.log(notification)
+        // const notification = await Notification.create(notificationObj);
+        // console.log(notification)
 
     }catch(err){
         console.log("Error while inserting data into database manually for notification : " + err)

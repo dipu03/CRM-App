@@ -2,8 +2,10 @@ const constants = require('../utils/constants');
 
 const validateNotificationBody = (req, res, next) => {
     try{
+        console.log(req.body.subject, req.body.recepientEmails, req.body.content)
 
         if(!req.body.subject || !req.body.recepientEmails || !req.body.content){
+            
             return res.status(400).send({
                 message : "Failed !! [subject, recepientEmails, content] is required to make this call !!!"
             })

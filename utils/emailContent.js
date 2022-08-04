@@ -2,7 +2,7 @@
 exports.notificationContent = (createdTicket) => {
     const emailContent = {}
 
-    emailContent.message = " Your Ticket is Created Successfully !!! congratulation !!!"
+    // emailContent.message = " Your Ticket is Created Successfully !!! congratulation !!!"
     emailContent.Ticket_id = createdTicket._id ,
     emailContent.Title =  createdTicket.title,
     emailContent.Description = createdTicket.description,

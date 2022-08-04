@@ -25,12 +25,14 @@ module.exports = {
     },
 
     getEngineer : (engineers) => {
+        
         let tempEng;
-        let len = Number.MAX_SAFE_INTEGER;
+        let maxTicketAssigned = Number.MAX_SAFE_INTEGER;
+
         for(let engineer of engineers){
-            if(engineer.ticketsAssigned.length < len){
+            if(engineer.ticketsAssigned.length < maxTicketAssigned){
                 tempEng = engineer;
-                len = engineer.ticketsAssigned.length
+                maxTicketAssigned = engineer.ticketsAssigned.length
             }
         }
         return tempEng

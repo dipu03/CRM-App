@@ -47,13 +47,13 @@ exports.createTicket = async (req, res) => {
             const emailContent = createContent.notificationContent(ticket);
             
             // send email 
-            sendNtificationReq(`Ticket Created !!! Id : ${ticket._id}`,`${reporter.email},${assignee.email},${constants.mailCriteria.ADMIN_MAIL_ID}`,emailContent ,`${constants.mailCriteria.OWNER_NAME}`)
+            sendNtificationReq(`Ticket Created Successfully !!! Id : ${ticket._id}`,`${reporter.email},${assignee.email},${constants.mailCriteria.ADMIN_MAIL_ID}`,`Yeahhh !! Your Ticket is Created Successfully !!! ${'\n'} Ticket_id :  ${ticket._id} ${'\n'} Ticket_status :  ${ticket.ticketStatus} ${'\n'} Ticket_description : ${ticket.description}`, `${constants.mailCriteria.OWNER_NAME}`)
 
             res.status(201).send(ticket)
         }
 
     }catch(err){
-        console.log("Error in ticket creation controller : " + err);
+        console.log("Error in ticket creation controller : ", err.message);
         res.status(500).send({
             message : "Internal Server Error"
         })
@@ -104,9 +104,6 @@ exports.findAllTickets = async (req, res) => {
                     })
                 }
 
-                // let allTicketsOfEngineer = ticketsCreatedByEngineer.concat(ticketsAssignedToEngineer);
-
-                // queryObj._id = {$in : allTicketsOfEngineer}
                 queryObj["$or"] = [{"_id" : {$in : ticketsCreatedByUser}}, {"_id" : {$in : ticketsAssignedToEngineer}}]
 
                 const tickets = await Ticket.find(queryObj);
@@ -126,7 +123,7 @@ exports.findAllTickets = async (req, res) => {
         }
 
     }catch(err){
-        console.log("Error in find all tickets");
+        console.log("Error in find all tickets :", err.message);
         res.status(500).send("Internal Server Error")
     }
 }
@@ -149,10 +146,18 @@ exports.updateTicket = async (req, res) => {
         ticket.assignee = req.body.assignee != undefined ? req.body.assignee : ticket.assignee;
 
         const updateTicket = await ticket.save();
+
+        const reporter = await User.findOne({userId : updateTicket.reporter});
+        const assignee = await User.findOne({userId : updateTicket.assignee});
+        const emailContent = createContent.notificationContent(updateTicket);
+        
+        // send email 
+        sendNtificationReq(`Ticket Updated Successfully !!! Ticket_Id : ${updateTicket._id}`,`${reporter.email},${assignee.email},${constants.mailCriteria.ADMIN_MAIL_ID}`,`Yeahhh !! Your Ticket is Updataed Successfully !!! ${'\n'} Ticket_id :  ${updateTicket._id} ${'\n'} Ticket_status :  ${updateTicket.ticketStatus} ${'\n'} Ticket_description : ${updateTicket.description}`,`${constants.mailCriteria.OWNER_NAME}`)
+
         res.status(200).send(updateTicket)
 
     }catch(err){
-        console.log("Error in update ticket contrller : "+err)
+        console.log("Error in update ticket contrller : ", err.message)
         res.status(500).send({
             message : "Internal Server Error"
         })

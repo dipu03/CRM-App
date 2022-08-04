@@ -37,7 +37,7 @@ async function init(){
         // console.log(notification)
 
     }catch(err){
-        console.log("Error while inserting data into database manually for notification : " + err)
+        console.log("Error while inserting data into database manually for notification : " , err.message)
     }
 };
 

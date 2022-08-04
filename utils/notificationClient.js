@@ -29,7 +29,7 @@ module.exports = (subject, recepients, content, requester) => {
         })
 
     }catch(err){
-        console.log("Error in notification client into util file : ", err)
+        console.log("Error in notification client into util file : ", err.message)
     }
 
 }

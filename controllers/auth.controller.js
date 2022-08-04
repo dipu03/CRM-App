@@ -38,7 +38,7 @@ exports.signup = async (req, res) => {
         console.log("---*new user SignUp*--- : ", "userType :- ", response.userType, "userStatus :- ", user.userStatus)
 
     }catch(err){
-        console.log("Error while signup* : " + err);
+        console.log("Error while signup* : ", err.message);
         res.status(500).send({
             message : "Internal Server Error"
         })
@@ -57,7 +57,7 @@ exports.signin = async (req, res) => {
 
         if(user.userStatus == constants.userStatus.pending){
             return res.status(400).send({
-                message : "Failed 11 User is still pending !! Unable to login !!!"
+                message : "Failed !! User is still pending !! Unable to login !!!"
             })
         }
 
@@ -84,7 +84,7 @@ exports.signin = async (req, res) => {
 
 
     }catch(err){
-        console.log("Error while signin* : " + err);
+        console.log("Error while signin* : ", err.message);
         res.status(500).send({
             message : "Internal Server Error"
         })

@@ -29,7 +29,7 @@ const verifyToken = (req, res, next) => {
     })
 
     }catch(err){
-        console.log("Error in token valodation")
+        console.log("Error in token valodation : ", err.message)
         res.status(500).send("Internal server error")
     }
     
@@ -51,7 +51,7 @@ const isAdmin = async (req, res, next) => {
         }
 
     }catch(err) {
-        console.log("Error in isAdmin valodation")
+        console.log("Error in isAdmin valodation: ", err.message)
         res.status(500).send("Internal server error")
     }
 }
@@ -70,7 +70,7 @@ const isValidUserIdInParams = async (req, res, next) => {
         next()
 
     }catch(err){
-        console.log("error in validation userid in params ");
+        console.log("error in validation userid in params: ", err.message);
         res.status(500).send({
             message : "Internal Server Error"
         })
@@ -89,7 +89,7 @@ const isAdminOrOwner = async (req, res, next) => {
         }
 
     }catch(err){
-        console.log("error in validation userid in params ");
+        console.log("error in validation userid in params: ", err.message);
         res.status(500).send({
         message : "Internal Server Error"
         })
@@ -102,7 +102,7 @@ const validateUserTypeAndUserStatusUpdateRequest = async (req, res, next) => {
         const user = await User.findOne({userId : req.userId});
 
 
-        if((req.body.userType || req.body.userStatus) && user.userType != constants.userType.admin){
+        if(((req.body.userType && req.body.userType != user.userType) || (req.body.userStatus && req.body.userStatus != user.userStatus))  && user.userType != constants.userType.admin){
             
             return res.status(403).send({
                 message : "Failed !! Only Admin can Update the data !!!"
@@ -111,7 +111,7 @@ const validateUserTypeAndUserStatusUpdateRequest = async (req, res, next) => {
         next()
 
     }catch(err){
-        console.log("error in validation validateUserTypeAndUserStatusUpdateRequest in params ");
+        console.log("error in validation validateUserTypeAndUserStatusUpdateRequest in params: ", err.message);
         res.status(500).send({
         message : "Internal Server Error"
         })

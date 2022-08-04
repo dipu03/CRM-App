@@ -19,7 +19,7 @@ exports.acceptNotificationRequest = async (req, res) => {
         })
 
     }catch(err){
-        console.log("Error in accepting notification request")
+        console.log("Error in accepting notification request : ", err.message)
         res.status(500).send("Internal Server Error !!!")
     }
 }
@@ -30,7 +30,7 @@ exports.getNotificationDetailsById = async (req, res) => {
         const notificationId = req.params.id;
         if(!notificationId){
             return res.status(400).send({
-                message : "Failed !! Notification id is missed !!!"
+                message : "Failed !! Notification_id is missed !!!"
             })
         }
 
@@ -45,7 +45,7 @@ exports.getNotificationDetailsById = async (req, res) => {
         res.status(200).send(notification)
 
     }catch(err){
-        console.log("Error in  getNotificationDetailsById request")
+        console.log("Error in getNotificationDetailsById request : ", err.message)
         res.status(500).send("Internal Server Error !!!")
     }
 }

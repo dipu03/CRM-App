@@ -6,5 +6,5 @@ module.exports = (app) => {
 
     app.post('/notiserv/api/v1/notifications', [validateNotification.validateNotificationBody], notificationController.acceptNotificationRequest);
 
-    app.get('/notiserv/api/v1/notifications/:id', notificationController.getNotificationDetailsById)
+    app.get('/notiserv/api/v1/notifications/:id', notificationController.getNotificationDetailsById);
 }

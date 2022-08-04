@@ -56,7 +56,7 @@ async function init(){
         console.log(user);
 
     }catch(err){
-        console.log("Error while inserting data into database manually : " + err)
+        console.log("Error while inserting data into database manually : ", err.message)
     }
 };
 

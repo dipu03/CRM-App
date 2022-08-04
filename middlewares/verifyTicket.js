@@ -25,7 +25,7 @@ const validateTicketRequestBody = async (req, res, next) => {
         next()
 
     }catch(err){
-        console.log("Error in ticket body validation");
+        console.log("Error in ticket body validation : ", err.message);
         res.status(200).send({
             message : "Internal Server Error !!!"
         })
@@ -88,7 +88,7 @@ const isValidOwnerOfTheTicket = async (req, res, next) => {
         next()
 
     }catch(err) {
-        console.log("Error in isValidateOwner of the Ticket : "+err)
+        console.log("Error in isValidateOwner of the Ticket : ",err.message)
         res.status(500).send({
             message : "Internal Server Error !!!"
         })

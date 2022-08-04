@@ -4,9 +4,19 @@ const constants = require('../utils/constants');
 const validateSignUpRequestBody = async (req, res, next) => {
     try{
 
-        if(!req.body.name || !req.body.userId || !req.body.email || !req.body.password || !req.body.userType){
+        if(!req.body.name || !req.body.userId || !req.body.email || !req.body.password ){
             return res.status(400).send({
                 message : "Failed !! Required Field missed !!  :- [name, userId, email, password, userType] can't be empty !!!!"
+            })
+        }
+
+        if(!req.body.userType){
+            req.body.userType = constants.userType.customer
+        }
+
+        if(req.body.userType && !Object.values(constants.userType).includes(req.body.userType)){
+            return res.status(400).send({
+                message : "Failed !! UserType provided is not correct, Possible correct values : CUSTOMER | ENGINEER"
             })
         }
 
@@ -29,20 +39,14 @@ const validateSignUpRequestBody = async (req, res, next) => {
             })
         }
 
-        if(!Object.values(constants.userType).includes(req.body.userType)){
-            return res.status(400).send({
-                message : "Failed !! UserType provided is not correct. Possible correct values : CUSTOMER | ENGINEER"
-            })
-        }
-
+        next()
 
     }catch(err){
-        console.log("Error in validateSignUpRequest section into middleware")
+        console.log("Error in validateSignUpRequest section into middleware : ", err.message)
         res.status(500).send({
             message : "Internal Server Error"
         })
     }
-    next()
 };
 
 

@@ -35,7 +35,7 @@ const validateNotificationBody = (req, res, next) => {
         next()
 
     }catch(err){
-        console.log("error in validate notificaton body : " + err)
+        console.log("error in validate notificaton body : " , err.message)
         res.status(500).send({
             message : "Internal Server Error"
         })

@@ -20,7 +20,7 @@ db.on("error", () => {
 })
 db.once("open", () => {
     console.log("Connection Established with mongoDB")
-    init()
+    // init()
 })
 
 async function init(){
@@ -60,7 +60,9 @@ async function init(){
     }
 };
 
-
+app.get("/", (req, res) => {
+    res.send("Hello !! Welcome to CRM App")
+})
 
 // Require all routes
 require('./routes/ticket.route')(app)

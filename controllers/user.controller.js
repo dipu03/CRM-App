@@ -21,7 +21,9 @@ exports.findAllUser = async (req, res) => {
 
     }catch(err){
         console.log("Error in find all user in user controller : ", err.message)
-        res.status(500).send("Internal Server Error !!!")
+        res.status(500).send({
+            message : "Internal Server Error !!!"
+        })
     }
 };
 

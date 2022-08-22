@@ -68,7 +68,7 @@ require('./routes/user.route')(app);
 require('./routes/auth.route')(app);
 
 
-app.listen(serverConfig.PORT, () => {
+module.exports = app.listen(serverConfig.PORT, () => {
     console.log("Server is runing ar PORT : " + serverConfig.PORT)
 })
 

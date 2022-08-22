@@ -20,7 +20,6 @@ module.exports = (subject, recepients, content, requester) => {
         data : reqBody,
         headers : reqHeader
     }
-    console.log(args)
 
     try{
         client.post(serverConfig.NOTIFICATION_REQ_URL, args, (data, res) => {
@@ -31,6 +30,6 @@ module.exports = (subject, recepients, content, requester) => {
     }catch(err){
         console.log("Error in notification client into util file : ", err.message)
     }
-
+    
 }
 

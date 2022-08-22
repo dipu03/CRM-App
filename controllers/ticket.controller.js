@@ -31,7 +31,8 @@ exports.createTicket = async (req, res) => {
         if(ticket){
 
             // update ticket in reporter's document
-            const user = await User.findOne({userId : req.userId});
+            const user = await User.findOne({userId : ticket.reporter});
+
             user.ticketsCreated.push(ticket._id)
             await user.save()
 
@@ -44,7 +45,6 @@ exports.createTicket = async (req, res) => {
 
             const reporter = await User.findOne({userId : ticket.reporter});
             const assignee = await User.findOne({userId : ticket.assignee});
-            const emailContent = createContent.notificationContent(ticket);
             
             // send email 
             sendNtificationReq(`Ticket Created Successfully !!! Id : ${ticket._id}`,`${reporter.email},${assignee.email},${constants.mailCriteria.ADMIN_MAIL_ID}`,`Yeahhh !! Your Ticket is Created Successfully !!! ${'\n'} Ticket_id :  ${ticket._id} ${'\n'} Ticket_status :  ${ticket.ticketStatus} ${'\n'} Ticket_description : ${ticket.description}`, `${constants.mailCriteria.OWNER_NAME}`)

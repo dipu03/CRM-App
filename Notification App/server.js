@@ -16,7 +16,7 @@ db.on("error" ,() =>{
 })
 db.on("open", () => {
     console.log("Success !! Connection established Successfully with mongoDb")
-    init()
+    // init()
 })
 
 

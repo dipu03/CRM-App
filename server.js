@@ -20,14 +20,14 @@ db.on("error", () => {
 })
 db.once("open", () => {
     console.log("Connection Established with mongoDB")
-    // init()
+    init()
 })
 
 async function init(){
     try{
 
-        await User.collection.drop();
-        await Ticket.collection.drop();
+        // await User.collection.drop();
+        // await Ticket.collection.drop();
     
         let  user = await User.findOne({userType : constants.userType.admin});
         if(user){

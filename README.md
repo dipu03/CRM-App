@@ -57,7 +57,7 @@ notification service application
 
 - #### Sign-up
 
-```http
+``` http
   POST /crm/api/v1/auth/signup
 ```
 Register user with name, userId, email, password and user type.
@@ -65,7 +65,7 @@ Register user with name, userId, email, password and user type.
 
 - #### Sign-in
 
-```http
+``` http
   POST /crm/api/v1/auth/signin
 ```
 User Sign-in using userId and password.
@@ -73,23 +73,23 @@ User Sign-in using userId and password.
 
 - #### Get all users (Query params userType and userStatus supported)
 
-```http
+``` http
   GET /crm/api/v1/users
 ```
 An admin can get a list of all users. The list can also be filtered by userType and userStatus.
 
 
 - ####	Get user by userId
-```` http
+``` http
 GET /crm/api/v1/users/:id
-````
+```
 A user or an admin can get the data of the user by userId.
 
 
 - ####	Update user data
-````http
+``` http
 PUT /crm/api/v1/users/:id
-````
+```
 A user or an admin can update the data of the user by userId.
 
 
@@ -98,23 +98,23 @@ A user or an admin can update the data of the user by userId.
 
 
 - ####	Create a Ticket
-````http
+``` http
 POST /crm/api/v1/create/tickets
-````
+```
 A register user can create a ticket.
 
 
 - ####	Find all Tickets
-````http
+``` http
 GET/crm/api/v1/tickets
-````
+```
 Any user can fetch all their tickets.
 
 
 - ####	Update a Ticket
-````http
+``` http
 PUT/crm/api/v1/tickets/:id	
-````
+```
 Any user can update their ticket details.
 
 
